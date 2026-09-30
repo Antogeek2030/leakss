@@ -1,0 +1,30 @@
+---
+import { SITE } from '../config';
+import { SERVICES } from '../data/services';
+const path = Astro.url.pathname;
+const cur = (p: string) => (path === p || path === p + '/' ? 'page' : undefined);
+---
+<header class="site-header">
+  <div class="container bar">
+    <a class="brand" href="/">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#10303a"/><path d="M16 5c4 5.5 7 9 7 13a7 7 0 0 1-14 0c0-4 3-7.5 7-13z" fill="#e8a23b"/></svg>
+      {SITE.name}
+    </a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav" aria-label="Main" data-open="false">
+      <ul class="nav-list">
+        <li><a href="/" aria-current={cur('/')}>Home</a></li>
+        <li class="has-sub">
+          <a href="/#services">Services</a>
+          <ul class="sub">
+            {SERVICES.map((s) => <li><a href={`/services/${s.slug}/`}>{s.title}</a></li>)}
+          </ul>
+        </li>
+        <li><a href="/service-areas/" aria-current={cur('/service-areas')}>Service Areas</a></li>
+        <li><a href="/blog/" aria-current={cur('/blog')}>Blog</a></li>
+        <li><a href="/contact/" aria-current={cur('/contact')}>Contact Us</a></li>
+        <li><a class="nav-cta" href={`tel:${SITE.phoneHref}`}>Call {SITE.phone}</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>

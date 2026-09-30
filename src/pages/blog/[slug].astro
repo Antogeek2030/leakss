@@ -1,0 +1,25 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { POSTS } from '../../data/posts';
+export function getStaticPaths() {
+  return POSTS.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+const { post } = Astro.props;
+---
+<Layout title={`${post.title} | Thousand Oaks Leak Detection`} description={post.excerpt}>
+  <section class="page-hero">
+    <div class="container">
+      <div class="crumbs"><a href="/">Home</a> / <a href="/blog/">Blog</a></div>
+      <h1>{post.title}</h1>
+      <p>{post.tag}</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container narrow article">
+      {post.body.map((b) => (<>{b.h && <h2>{b.h}</h2>}<p>{b.p}</p></>))}
+      <p><a href="/blog/">← Back to all posts</a></p>
+    </div>
+  </section>
+  <CtaBand />
+</Layout>

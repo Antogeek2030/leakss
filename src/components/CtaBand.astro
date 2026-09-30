@@ -1,0 +1,14 @@
+---
+import { SITE } from '../config';
+const { title = 'Think you have a leak? Get it checked.' } = Astro.props;
+---
+<section class="cta-band">
+  <div class="container">
+    <h2>{title}</h2>
+    <p>Local, licensed and insured. Serving Thousand Oaks, Agoura Hills and nearby communities.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href={`tel:${SITE.phoneHref}`}>Call {SITE.phone}</a>
+      <a class="btn btn-ghost" href="/contact/">Request a free quote</a>
+    </div>
+  </div>
+</section>

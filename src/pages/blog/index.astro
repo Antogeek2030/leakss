@@ -1,0 +1,26 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { POSTS } from '../../data/posts';
+---
+<Layout title="Leak Detection Blog | Thousand Oaks Leak Detection" description="Practical tips for Conejo Valley homeowners on finding leaks, reading your water bill and protecting your home from water damage.">
+  <section class="page-hero">
+    <div class="container">
+      <h1>Leak detection blog</h1>
+      <p>Practical advice for homeowners on finding leaks and knowing when to call a pro.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="card-list">
+        {POSTS.map((p) => (
+          <article class="post">
+            <small>{p.tag}</small>
+            <h3><a href={`/blog/${p.slug}/`}>{p.title}</a></h3>
+            <p>{p.excerpt}</p>
+            <a class="more" href={`/blog/${p.slug}/`}>Read more →</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

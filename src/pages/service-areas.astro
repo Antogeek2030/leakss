@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Map from '../components/Map.astro';
+import { AREAS, FULL_ADDRESS } from '../config';
+---
+<Layout title="Service Areas | Thousand Oaks Leak Detection" description="Leak detection in Thousand Oaks, Agoura Hills, Westlake Village, Newbury Park, Calabasas, Moorpark, Simi Valley and nearby communities.">
+  <section class="page-hero">
+    <div class="container">
+      <h1>Service areas</h1>
+      <p>Our base is in Agoura Hills, and we travel across the Conejo Valley and neighboring cities.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container two">
+      <div>
+        <h2>Communities we serve</h2>
+        <ul class="area-list">{AREAS.map((a) => <li>{a}</li>)}</ul>
+        <p style="margin-top:1.5rem">Do not see your city? Call us. If you are within a short drive of Thousand Oaks we can usually help.</p>
+      </div>
+      <div>
+        <h2>Where we are</h2>
+        <p>{FULL_ADDRESS}</p>
+        <Map />
+      </div>
+    </div>
+  </section>
+  <CtaBand />
+</Layout>

@@ -1,0 +1,5 @@
+---
+import { MAP_EMBED, MAP_LINK, FULL_ADDRESS } from '../config';
+---
+<iframe class="map" src={MAP_EMBED} title={`Map showing ${FULL_ADDRESS}`} loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+<p><a href={MAP_LINK} target="_blank" rel="noopener">Open in Google Maps for directions</a></p>

@@ -1,0 +1,85 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Map from '../components/Map.astro';
+import { SITE, AREAS, FULL_ADDRESS } from '../config';
+import { SERVICES } from '../data/services';
+const steps = [
+  ['You call or send a request', 'Tell us what you are seeing. We will give you a clear quote before we come out.'],
+  ['We find the leak', 'Acoustic, thermal and moisture tools locate the exact spot without opening walls.'],
+  ['You get a written report', 'Photos, readings and repair options you can share with a plumber or insurer.'],
+];
+const faqs = [
+  ['How much does leak detection cost?', 'It depends on the size of the property and the type of leak. Call or send a request and we will give you a clear quote up front.'],
+  ['Will you cut into my walls or floors?', 'No. Our tools locate leaks from the surface, so any repair opening is small and targeted.'],
+  ['Do you repair the leak too?', 'We specialize in finding it. We will explain the fix and can share what a plumber needs to know to quote it accurately.'],
+];
+---
+<Layout title="Leak Detection Thousand Oaks CA | Non-Invasive Leak Finding" description="Local leak detection in Thousand Oaks, Agoura Hills and the Conejo Valley. Slab, pool and hidden water leaks found without tearing up your home. Free quotes.">
+  <section class="hero">
+    <div class="container">
+      <div>
+        <h1>Thousand Oaks Leak Detection Experts</h1>
+        <p>We find hidden water leaks fast and without demolition. Honest pricing, clear reports and a local team that answers the phone.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href={`tel:${SITE.phoneHref}`}>Call Us: {SITE.phone}</a>
+          <a class="btn btn-ghost" href="/contact/">Get a Quote</a>
+        </div>
+      </div>
+      <svg class="hero-art" viewBox="0 0 240 240" fill="none" aria-hidden="true">
+        <circle cx="120" cy="120" r="108" stroke="#2a5563" stroke-width="2"/>
+        <circle cx="120" cy="120" r="78" stroke="#2a5563" stroke-width="2"/>
+        <circle cx="120" cy="120" r="48" stroke="#2a5563" stroke-width="2"/>
+        <path d="M120 58c17 23 30 38 30 56a30 30 0 0 1-60 0c0-18 13-33 30-56z" fill="#e8a23b"/>
+        <path d="M108 118a12 12 0 0 0 10 12" stroke="#10303a" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="container">
+      <h2>Our core leak detection services</h2>
+      <p class="lede">From a mystery water bill to a leak under the slab, we locate the problem so the fix is small.</p>
+      <div class="rows">
+        {SERVICES.map((s) => (
+          <div class="row">
+            <h3><a href={`/services/${s.slug}/`}>{s.title}</a></h3>
+            <p>{s.short}</p>
+            <a class="more" href={`/services/${s.slug}/`} aria-label={`Learn more about ${s.title}`}>Learn more →</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section tint">
+    <div class="container">
+      <h2>How it works</h2>
+      <ol class="steps two" style="list-style-position:inside;padding:0;margin:1.5rem 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+        {steps.map(([t, d]) => <li><strong>{t}</strong><br /><span style="color:var(--muted)">{d}</span></li>)}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container two">
+      <div>
+        <h2>Serving the Conejo Valley</h2>
+        <p class="lede">Based in Agoura Hills, we cover Thousand Oaks and the surrounding communities.</p>
+        <ul class="area-list">{AREAS.slice(0, 6).map((a) => <li>{a}</li>)}</ul>
+        <p style="margin-top:1.25rem"><a href="/service-areas/">See all service areas →</a></p>
+        <p style="color:var(--muted)">{FULL_ADDRESS}</p>
+      </div>
+      <div><Map /></div>
+    </div>
+  </section>
+
+  <section class="section tint">
+    <div class="container narrow faq">
+      <h2>Common questions</h2>
+      {faqs.map(([q, a]) => <details><summary>{q}</summary><p>{a}</p></details>)}
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

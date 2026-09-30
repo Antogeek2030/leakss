@@ -1,0 +1,36 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { SERVICES } from '../../data/services';
+export function getStaticPaths() {
+  return SERVICES.map((s) => ({ params: { slug: s.slug }, props: { s } }));
+}
+const { s } = Astro.props;
+const others = SERVICES.filter((x) => x.slug !== s.slug);
+---
+<Layout title={`${s.title} in Thousand Oaks, CA | Thousand Oaks Leak Detection`} description={`${s.short} Serving Thousand Oaks, Agoura Hills and the Conejo Valley.`}>
+  <section class="page-hero">
+    <div class="container">
+      <div class="crumbs"><a href="/">Home</a> / <a href="/#services">Services</a></div>
+      <h1>{s.title}</h1>
+      <p>{s.short}</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container two">
+      <div>
+        <p class="lede">{s.intro}</p>
+        <h2>Signs you may need this</h2>
+        <ul class="checks">{s.signs.map((x) => <li>{x}</li>)}</ul>
+        <p>{s.note}</p>
+      </div>
+      <div>
+        <h2>How we do it</h2>
+        <ol class="steps">{s.process.map((x) => <li>{x}</li>)}</ol>
+        <h3>Other services</h3>
+        <ul class="checks">{others.map((o) => <li><a href={`/services/${o.slug}/`}>{o.title}</a></li>)}</ul>
+      </div>
+    </div>
+  </section>
+  <CtaBand />
+</Layout>

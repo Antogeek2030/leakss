@@ -1,0 +1,36 @@
+---
+import { SITE, FULL_ADDRESS, MAP_LINK } from '../config';
+import { SERVICES } from '../data/services';
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <h4>{SITE.name}</h4>
+        <p>Non-invasive water leak detection for homes and businesses across the Conejo Valley and nearby communities.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>{SERVICES.map((s) => <li><a href={`/services/${s.slug}/`}>{s.title}</a></li>)}</ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/service-areas/">Service Areas</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/contact/">Contact Us</a></li>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href={`tel:${SITE.phoneHref}`}>{SITE.phone}</a></li>
+          <li><a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
+          <li><a href={MAP_LINK} target="_blank" rel="noopener">{FULL_ADDRESS}</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="copy">© {new Date().getFullYear()} {SITE.name}. All rights reserved. | {FULL_ADDRESS}</p>
+  </div>
+</footer>
